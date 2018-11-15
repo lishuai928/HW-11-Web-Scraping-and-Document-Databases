@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+      .fill-img img {
+          width: 100%;
+          height: 100%;
+      }
+  </style>
+</head>
+
+<body>
+  <div clas="container">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Mars Data</a></p>
+    </div>
+      
+    <!-- surf data -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Latest Mars News</h3>
+        <h4>{{ mars.news_title }}</h4>
+        <p>{{ mars.news_p }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 fill-img">
+        <h3>Featured Mars Image</h3>
+        <img src= "{{ mars.featured }}" width: 10% />
+      </div>
+      <div class="col-md-4">
+        <div>
+            <h4>Cureent Weather on Mars</h4>
+            <p>{{ mars.mars_weather }}</p>
+        </div>
+        <hr>
+        <div> 
+            <h4>Mars Facts</h4>
+        
+            {{ mars.html_table|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div clas="container">
+    <div class="jumbotron text-center">
+        <h3>Mars Hemispheres</h3>
+    </div>
+    {% for row in mars.hemisphere %}
+    <div class= "col-md-6 fill-img">
+      <img src= "{{ row.img_url }}" width: 50% >
+      <h4 class="text-center">{{ row.title }}</h4>
+    </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
+
